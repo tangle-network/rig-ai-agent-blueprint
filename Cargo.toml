@@ -1,0 +1,71 @@
+[package]
+name = "rig-ai-agent-blueprint"
+version = "0.1.0"
+edition = "2021"
+description = "A Tangle Blueprint for an AI Agent using Rig framework"
+authors = ["Drew Stone <drewstone329@gmail.com>"]
+license = "MIT OR Apache-2.0"
+homepage = "https://tangle.tools"
+repository = "https://github.com/tangle-network/rig-ai-agent-blueprint"
+readme = "README.md"
+categories = ["cryptography", "cryptography::cryptocurrencies"]
+keywords = ["tangle", "blueprint", "avs"]
+rust-version = "1.81"
+
+[dependencies]
+tracing = "0.1"
+async-trait = "0.1"
+color-eyre = "0.6"
+structopt = "0.3.26"
+tokio = { version = "^1", default-features = false, features = ["full"] }
+tracing-subscriber = { version = "0.3", features = ["parking_lot", "env-filter"] }
+rig-core = { version = "0.6.0" }
+serde_json = "1.0.134"
+serde = "1.0.217"
+anyhow = "1.0.95"
+chrono = "0.4.39"
+git2 = { version = "0.19.0", features = ["vendored-openssl"] }
+tempfile = "3"
+octocrab = { version = "0.40" }
+futures = "0.3.31"
+url = "2.5.4"
+reqwest = "0.12.12"
+dotenv = "0.15.0"
+
+[dependencies.gadget-sdk]
+version = "0.6.2"
+default-features = false
+features = ["getrandom"]
+
+[build-dependencies]
+blueprint-metadata = "0.2.0"
+blueprint-build-utils = { git = "https://github.com/tangle-network/gadget" }
+
+[dev-dependencies]
+gadget-blueprint-serde = { version = "0.3.1" }
+blueprint-test-utils = { git = "https://github.com/tangle-network/gadget.git" }
+tokio = { version = "1.42.0", features = ["test-util"] }
+
+
+[features]
+default = ["std"]
+std = ["gadget-sdk/std"]
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "rig-ai-agent-blueprint"
+path = "src/main.rs"
+
+[package.metadata.blueprint]
+manager = { Evm = "HelloBlueprint" }
+
+[[package.metadata.gadget.Native.sources]]
+owner = "tangle-network"
+repo = "rig-ai-agent-blueprint"
+tag = "0.1.0"
+binaries = [
+    { arch = "Amd64", os = "Linux", name = "amd64-linux-rig-ai-agent-blueprint-gadget" },
+    { arch = "Arm64", os = "Linux", name = "arm64-linux-rig-ai-agent-blueprint-gadget" },
+]
