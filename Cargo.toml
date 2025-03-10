@@ -44,7 +44,7 @@ blueprint-build-utils = { git = "https://github.com/tangle-network/gadget" }
 [dev-dependencies]
 gadget-blueprint-serde = { version = "0.3.1" }
 blueprint-test-utils = { git = "https://github.com/tangle-network/gadget.git" }
-tokio = { version = "1.42.0", features = ["test-util"] }
+tokio = { version = "1.44.0", features = ["test-util"] }
 
 
 [features]
